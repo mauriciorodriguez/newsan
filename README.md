@@ -35,7 +35,7 @@ CTRL+C
 
 ##
 
-Para correr el servidor en otro purto
+Para correr el servidor en otro puerto
 ```sh
 python manage.py runserver <puerto>
 ```

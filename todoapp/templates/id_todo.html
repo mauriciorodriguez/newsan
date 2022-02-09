@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+
+{% block titulo %}TODO {{todo.id}}{% endblock titulo %} 
+
+{% block contenido %} 
+{% load static %}
+{% if todo %}
+<table class="table table-striped">
+    <caption>
+        TODO ID: {{todo.id}}
+    </caption>
+    <tr>
+        <th>ID</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+        <th>Adjunto<th>
+    </tr>
+    <tr>
+        <td>{{todo.id}}</td>   
+        <td>{{todo.descripcion}}</td>   
+        <td>{{todo.get_estado_display}}</td>   
+        <td><a href="{% get_media_prefix %}{{todo.adjunto}}">{{todo.adjunto}}</a></td> 
+        <td>
+            <a href="{% url "editar-todo" pk=todo.id %}" class="btn btn-success" role="button" aria-pressed="true">Editar</a>
+            <a href="{% url "borrar-todo" pk=todo.id %}" class="btn btn-danger" role="button" aria-pressed="true">Borrar</a>
+        </td>  
+    </tr>
+</table>
+{% else %}
+    No existe.
+{% endif %}
+{% endblock contenido %}
+    

@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+
+{% block titulo %}Lista TODOs{% endblock titulo %} 
+
+{%block contenido %} 
+{% load static %}
+
+<form action="/filtro/id" method="GET">
+	<label>Filtro por id</label>
+	<input type="number" id="valor_id" name="valor_id" min="1" value="1">
+	<input type="submit" value="Seleccionar">
+</form>
+<br>
+<form action="/filtro/descripcion" method="GET">
+	<label>Filtro por descripcion</label>
+	<input type="text" id="valor_descripcion" name="valor_descripcion" >
+	<input type="submit" value="Seleccionar">
+</form>
+<br>
+<form action="/filtro/estado" method="GET">
+	<label>Filtro por estado</label>
+    <br>
+	<input type="radio" id="valor_estado" name="valor_estado" value="R">
+    <label for="valor_estado">Resuelto</label>
+    <br>
+	<input type="radio" id="valor_estado" name="valor_estado" value="P">
+    <label for="valor_estado">Pendiente</label>
+	<input type="submit" value="Seleccionar">
+</form>
+<br>
+
+<table class="table table-striped">
+    <caption>
+        TODOs 
+    </caption>
+    <tr>
+        <th>ID</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+        <th>Adjunto<th>
+    </tr>
+    <tr>
+        {% for todo in todos %}
+            <tr>
+                <td>{{todo.id}}</td>   
+                <td>{{todo.descripcion}}</td>   
+                <td>{{todo.get_estado_display}}</td>   
+                <td><a href="{% get_media_prefix %}{{todo.adjunto}}">{{todo.adjunto}}</a></td> 
+                <td>
+                    <a href="{% url "editar-todo" pk=todo.id %}" class="btn btn-success" role="button" aria-pressed="true">Editar</a>
+                    <a href="{% url "borrar-todo" pk=todo.id %}" class="btn btn-danger" role="button" aria-pressed="true">Borrar</a>
+                </td>  
+            </tr>
+            {% empty %}
+                No hay TODOs.
+        {% endfor %}
+    </tr>
+</table>
+{% endblock contenido %}

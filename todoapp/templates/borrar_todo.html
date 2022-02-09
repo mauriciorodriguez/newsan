@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+
+{% block titulo %}Borrar TODO{% endblock titulo %} 
+
+{%block contenido %} 
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+
+    <p>
+        ID: {{ object.id }} <br>
+        Descripcion: {{ object.descripcion }} <br>
+        Estado: {{ object.get_estado_display }} <br>
+        Adjunto: {{ object.adjunto }} <br><br>
+        Seguro desea eliminar el TODO?
+    </p>
+    {{ form.as_p }}
+    <input type="submit" value="Borrar">
+</form> 
+{% endblock contenido %}

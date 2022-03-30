@@ -2,10 +2,15 @@
 
 Implementar una solución que permita guardar y listar una/s Entidad/es TODOs con 
 las siguientes características:
+
 TODO (To do, listado de tareas por hacer)
+
 A) ID
+
 B) DESCRIPCION (EL TODO a hacer)
+
 C) Estado
+
 D) Foto/Imagen/Documento adjunta a la DESCRIPCION
 
 A implementar:
